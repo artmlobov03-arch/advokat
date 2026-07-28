@@ -27,7 +27,13 @@ export default function AboutPage() {
       <section className="section section-about">
         <div className="container about-grid">
           <div className="about-portrait">
-            <Image src="/advokat-rozhnovskiy.webp" alt="Дмитрий Рожновский" fill sizes="(max-width: 800px) 100vw, 50vw" />
+            <Image
+              src="/advokat-rozhnovskiy.webp"
+              alt="Дмитрий Рожновский"
+              fill
+              unoptimized
+              sizes="(max-width: 800px) 100vw, 50vw"
+            />
           </div>
           <article className="about-copy">
             <p className="eyebrow eyebrow-dark">Подход к работе</p>

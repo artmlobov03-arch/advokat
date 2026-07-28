@@ -40,13 +40,23 @@ export default function Home() {
             alt=""
             fill
             priority
+            unoptimized
             sizes="100vw"
           />
         </div>
         <div className="hero-scrim" />
+        <div className="hero-rail" aria-hidden="true">
+          <span>Уголовная защита</span>
+          <i />
+          <span>Подольск · Москва</span>
+        </div>
         <div className="container hero-content">
           <p className="eyebrow">Адвокат по уголовным делам · Подольск и Москва</p>
-          <h1>Защита, когда на кону свобода и репутация</h1>
+          <h1>
+            <span>Защита, когда</span>
+            <span className="hero-title-accent">на кону свобода</span>
+            <span>и репутация</span>
+          </h1>
           <p className="hero-lead">
             Дмитрий Рожновский. Конфиденциальная правовая помощь на стадии
             проверки, следствия и судебного разбирательства.
@@ -62,6 +72,19 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="marquee" aria-label="Принципы работы">
+        <div className="marquee-track">
+          <span>Защита</span><b>✦</b>
+          <span>Стратегия</span><b>✦</b>
+          <span>Конфиденциальность</span><b>✦</b>
+          <span>Практика</span><b>✦</b>
+          <span>Защита</span><b>✦</b>
+          <span>Стратегия</span><b>✦</b>
+          <span>Конфиденциальность</span><b>✦</b>
+          <span>Практика</span><b>✦</b>
+        </div>
+      </div>
 
       <section className="urgent-panel" aria-label="Срочная помощь">
         <div className="container urgent-inner">
@@ -131,6 +154,7 @@ export default function Home() {
               src="/advokat-rozhnovskiy.webp"
               alt="Адвокат Дмитрий Рожновский в рабочем кабинете"
               fill
+              unoptimized
               sizes="(max-width: 800px) 100vw, 44vw"
             />
             <div className="portrait-caption">

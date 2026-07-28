@@ -7,7 +7,9 @@ export function Footer() {
       <div className="container footer-grid">
         <div>
           <Link className="brand brand-light" href="/">
-            <span className="brand-mark">ДР</span>
+            <span className="brand-mark brand-logo" aria-hidden="true">
+              <img src="/sedlex-logo.webp" alt="" />
+            </span>
             <span>
               <strong>Дмитрий Рожновский</strong>
               <small>адвокат · ПКА «СЕД ЛЕКС»</small>

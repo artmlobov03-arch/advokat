@@ -21,7 +21,9 @@ export function Header() {
       <header className="site-header">
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="На главную">
-            <span className="brand-mark">ДР</span>
+            <span className="brand-mark brand-logo" aria-hidden="true">
+              <img src="/sedlex-logo.webp" alt="" />
+            </span>
             <span>
               <strong>Дмитрий Рожновский</strong>
               <small>адвокат · ПКА «СЕД ЛЕКС»</small>
