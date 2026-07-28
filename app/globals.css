@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #101618;
-  --ink-soft: #172126;
-  --paper: #f2eee6;
-  --paper-2: #e8e1d5;
-  --white: #fffdf8;
-  --brass: #b89455;
-  --brass-light: #d5b77d;
-  --line: rgba(16, 22, 24, 0.14);
+  --ink: #101a2a;
+  --ink-soft: #17263a;
+  --paper: #eef1f4;
+  --paper-2: #e1e7ec;
+  --white: #f8fafc;
+  --brass: #5f7f9f;
+  --brass-light: #a9bed1;
+  --line: rgba(16, 26, 42, 0.14);
   --line-dark: rgba(255, 255, 255, 0.14);
   --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
   --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -106,7 +106,7 @@ img {
   display: grid;
   place-items: center;
   color: var(--brass-light);
-  border: 1px solid rgba(213, 183, 125, 0.58);
+  border: 1px solid rgba(169, 190, 209, 0.58);
   border-radius: 50%;
   font-family: var(--serif);
   font-size: 16px;
@@ -198,7 +198,7 @@ img {
 }
 
 .button:hover {
-  background: #e4c98f;
+  background: #c6d5e1;
   transform: translateY(-2px);
 }
 
@@ -306,14 +306,15 @@ img {
 .hero-media img {
   object-fit: cover;
   object-position: center 45%;
-  transform: scale(1.005);
+  transform: scale(1.045);
+  transform-origin: 58% 45%;
 }
 
 .hero-scrim {
   z-index: -2;
   background:
-    linear-gradient(90deg, rgba(8, 13, 15, 0.98) 0%, rgba(8, 13, 15, 0.88) 36%, rgba(8, 13, 15, 0.24) 68%, rgba(8, 13, 15, 0.12) 100%),
-    linear-gradient(0deg, rgba(8, 13, 15, 0.7), transparent 50%);
+    linear-gradient(90deg, rgba(7, 15, 27, 0.98) 0%, rgba(7, 15, 27, 0.86) 31%, rgba(7, 15, 27, 0.36) 56%, rgba(7, 15, 27, 0.1) 100%),
+    linear-gradient(0deg, rgba(7, 15, 27, 0.68), transparent 52%);
 }
 
 .hero-content {
@@ -339,7 +340,7 @@ img {
 }
 
 .eyebrow-dark {
-  color: #896b3c;
+  color: #4f6f91;
 }
 
 .hero h1,
@@ -462,7 +463,7 @@ img {
 .urgent-panel {
   color: var(--white);
   background:
-    linear-gradient(110deg, #7f6033, #a7844b 55%, #7d5e31);
+    linear-gradient(110deg, #223a55, #426584 55%, #263f5b);
 }
 
 .urgent-inner {
@@ -484,9 +485,9 @@ img {
   left: 0;
   width: 10px;
   height: 10px;
-  background: #fff5da;
+  background: #e4eef6;
   border-radius: 50%;
-  box-shadow: 0 0 0 7px rgba(255, 245, 218, 0.15);
+  box-shadow: 0 0 0 7px rgba(228, 238, 246, 0.15);
 }
 
 .urgent-inner strong {
@@ -525,14 +526,14 @@ img {
 
 .section-light {
   background:
-    linear-gradient(135deg, rgba(184, 148, 85, 0.045), transparent 34%),
+    linear-gradient(135deg, rgba(95, 127, 159, 0.07), transparent 34%),
     var(--paper);
 }
 
 .section-dark {
   color: var(--white);
   background:
-    radial-gradient(circle at 80% 10%, rgba(184, 148, 85, 0.12), transparent 26%),
+    radial-gradient(circle at 80% 10%, rgba(95, 127, 159, 0.16), transparent 26%),
     var(--ink);
 }
 
@@ -617,14 +618,14 @@ img {
 }
 
 .service-card:hover::after {
-  color: rgba(213, 183, 125, 0.09);
+  color: rgba(169, 190, 209, 0.11);
   transform: translate(-6px, 6px);
 }
 
 .service-card:first-child {
   color: var(--white);
   background:
-    radial-gradient(circle at 85% 15%, rgba(213, 183, 125, 0.22), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(169, 190, 209, 0.22), transparent 28%),
     var(--ink-soft);
 }
 
@@ -639,7 +640,7 @@ img {
 }
 
 .service-card:first-child::after {
-  color: rgba(213, 183, 125, 0.1);
+  color: rgba(169, 190, 209, 0.12);
   font-size: 150px;
 }
 
@@ -650,11 +651,11 @@ img {
 
 .service-card:nth-child(6) .service-index,
 .service-card:nth-child(6) .card-link b {
-  color: #5f461e;
+  color: #294866;
 }
 
 .service-index {
-  color: #9a7b48;
+  color: #5f7f9f;
   font-family: var(--serif);
   font-size: 14px;
 }
@@ -720,7 +721,7 @@ img {
 
 .case-card:hover {
   background: rgba(255, 255, 255, 0.075);
-  border-color: rgba(213, 183, 125, 0.52);
+  border-color: rgba(169, 190, 209, 0.52);
   transform: translateY(-8px);
 }
 
@@ -972,7 +973,7 @@ blockquote::before {
   position: absolute;
   top: -98px;
   left: -12px;
-  color: rgba(213, 183, 125, 0.18);
+  color: rgba(169, 190, 209, 0.2);
   font-family: var(--serif);
   font-size: 190px;
   line-height: 1;
@@ -1047,7 +1048,7 @@ blockquote::before {
   position: absolute;
   top: 23px;
   right: 0;
-  color: #8e6f40;
+  color: #4f6f91;
   font-family: var(--sans);
   font-size: 24px;
   font-weight: 300;
@@ -1061,7 +1062,7 @@ blockquote::before {
   position: absolute;
   top: 29px;
   left: 0;
-  color: #9a7b48;
+  color: #5f7f9f;
   font-family: var(--sans);
   font-size: 10px;
 }
@@ -1077,8 +1078,8 @@ blockquote::before {
   padding-block: 105px;
   color: var(--white);
   background:
-    radial-gradient(circle at 70% 0%, rgba(184, 148, 85, 0.17), transparent 35%),
-    #121a1d;
+    radial-gradient(circle at 70% 0%, rgba(95, 127, 159, 0.2), transparent 35%),
+    var(--ink);
 }
 
 .contact-cta-grid {
@@ -1121,7 +1122,7 @@ blockquote::before {
   padding-block: 110px 100px;
   color: var(--white);
   background:
-    radial-gradient(circle at 85% 20%, rgba(184, 148, 85, 0.18), transparent 26%),
+    radial-gradient(circle at 85% 20%, rgba(95, 127, 159, 0.2), transparent 26%),
     var(--ink);
 }
 
@@ -1132,7 +1133,7 @@ blockquote::before {
   right: 8%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(transparent, rgba(213, 183, 125, 0.45), transparent);
+  background: linear-gradient(transparent, rgba(169, 190, 209, 0.45), transparent);
 }
 
 .inner-hero h1 {
@@ -1197,7 +1198,7 @@ blockquote::before {
   content: "↗";
   position: absolute;
   left: 0;
-  color: #8e6f40;
+  color: #4f6f91;
 }
 
 .sidebar-card {
@@ -1338,7 +1339,7 @@ blockquote::before {
   width: 100%;
   padding: 15px 16px;
   color: var(--ink);
-  background: #f7f3ec;
+  background: #f7f9fb;
   border: 1px solid transparent;
   outline: none;
   transition: border-color 0.2s ease;
@@ -1346,7 +1347,7 @@ blockquote::before {
 
 .field input:focus,
 .field textarea:focus {
-  border-color: #9a7b48;
+  border-color: #5f7f9f;
 }
 
 .field textarea {
