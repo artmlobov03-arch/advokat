@@ -8,6 +8,7 @@
   --white: #fbfbfc;
   --brass: #9da3a8;
   --brass-light: #d3d6d9;
+  --accent: #cf8878;
   --line: rgba(23, 25, 28, 0.14);
   --line-dark: rgba(255, 255, 255, 0.14);
   --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
@@ -369,8 +370,9 @@ img {
 }
 
 .hero-title-accent {
-  color: var(--brass-light);
+  color: var(--accent);
   font-style: italic;
+  text-shadow: 0 0 30px rgba(207, 136, 120, 0.12);
   transform: translateX(24px);
 }
 
