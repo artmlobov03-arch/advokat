@@ -428,38 +428,6 @@ img {
   background: linear-gradient(transparent, var(--brass-light), transparent);
 }
 
-.marquee {
-  overflow: hidden;
-  color: var(--ink);
-  background: var(--brass-light);
-  border-block: 1px solid rgba(16, 22, 24, 0.26);
-}
-
-.marquee-track {
-  width: max-content;
-  min-height: 54px;
-  display: flex;
-  align-items: center;
-  gap: 26px;
-  padding-right: 26px;
-  animation: marqueeMove 28s linear infinite;
-}
-
-.marquee span {
-  font-family: var(--serif);
-  font-size: 21px;
-  font-style: italic;
-  letter-spacing: 0.02em;
-}
-
-.marquee b {
-  font-size: 10px;
-}
-
-@keyframes marqueeMove {
-  to { transform: translateX(-50%); }
-}
-
 .urgent-panel {
   color: var(--white);
   background:

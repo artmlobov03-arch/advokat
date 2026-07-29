@@ -73,19 +73,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="marquee" aria-label="Принципы работы">
-        <div className="marquee-track">
-          <span>Защита</span><b>✦</b>
-          <span>Стратегия</span><b>✦</b>
-          <span>Конфиденциальность</span><b>✦</b>
-          <span>Практика</span><b>✦</b>
-          <span>Защита</span><b>✦</b>
-          <span>Стратегия</span><b>✦</b>
-          <span>Конфиденциальность</span><b>✦</b>
-          <span>Практика</span><b>✦</b>
-        </div>
-      </div>
-
       <section className="urgent-panel" aria-label="Срочная помощь">
         <div className="container urgent-inner">
           <div>
