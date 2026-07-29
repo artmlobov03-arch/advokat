@@ -302,14 +302,14 @@ img {
 
 .hero-media {
   z-index: -3;
-  left: 12%;
+  left: 50%;
 }
 
 .hero-media img {
   object-fit: cover;
-  object-position: center 42%;
-  transform: scale(1.025);
-  transform-origin: 47% 42%;
+  object-position: center 29%;
+  transform: scale(1.01);
+  transform-origin: 50% 31%;
 }
 
 .hero-scrim {
@@ -1514,7 +1514,7 @@ blockquote::before {
   }
 
   .hero-media img {
-    object-position: 46% center;
+    object-position: 50% 30%;
   }
 
   .hero-scrim {
