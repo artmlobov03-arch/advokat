@@ -301,6 +301,7 @@ img {
 
 .hero-media {
   z-index: -3;
+  left: 4.5%;
 }
 
 .hero-media img {
@@ -313,8 +314,8 @@ img {
 .hero-scrim {
   z-index: -2;
   background:
-    linear-gradient(90deg, rgba(15, 16, 18, 0.97) 0%, rgba(15, 16, 18, 0.86) 30%, rgba(15, 16, 18, 0.34) 55%, rgba(15, 16, 18, 0.08) 100%),
-    linear-gradient(0deg, rgba(15, 16, 18, 0.64), transparent 54%);
+    linear-gradient(90deg, rgba(15, 16, 18, 0.97) 0%, rgba(15, 16, 18, 0.9) 31%, rgba(15, 16, 18, 0.5) 44%, rgba(15, 16, 18, 0.14) 57%, rgba(15, 16, 18, 0.04) 100%),
+    linear-gradient(0deg, rgba(15, 16, 18, 0.56), transparent 56%);
 }
 
 .hero-content {
@@ -1443,6 +1444,10 @@ blockquote::before {
 
   .hero-rail {
     display: none;
+  }
+
+  .hero-media {
+    left: 0;
   }
 
   .section-heading {
