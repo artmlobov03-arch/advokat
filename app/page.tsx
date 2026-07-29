@@ -36,7 +36,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero-media" aria-hidden="true">
           <Image
-            src="/advokat-hero-portrait.webp"
+            src="/advokat-hero-gray-suit.webp"
             alt=""
             fill
             priority
