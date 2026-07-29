@@ -302,7 +302,21 @@ img {
 
 .hero-media {
   z-index: -3;
-  left: 50%;
+  left: 42%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 14%,
+    rgba(0, 0, 0, 0.72) 30%,
+    #000 43%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 14%,
+    rgba(0, 0, 0, 0.72) 30%,
+    #000 43%
+  );
 }
 
 .hero-media img {
@@ -1450,6 +1464,8 @@ blockquote::before {
 
   .hero-media {
     left: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .section-heading {
