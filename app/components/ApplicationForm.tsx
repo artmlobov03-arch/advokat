@@ -5,6 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 
 const consentVersion = "2026-08-04";
+const contactEndpoint =
+  process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact";
 
 type ApplicationFormProps = {
   recipientEmail: string;
@@ -21,7 +23,7 @@ export function ApplicationForm({ recipientEmail }: ApplicationFormProps) {
     setStatus("sending");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(contactEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

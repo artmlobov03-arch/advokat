@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^ https://xn----7sbbahcndsmamrwi2a7b2a6n.xn--p1ai/ [R=301,L,NE,QSD]
