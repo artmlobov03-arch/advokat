@@ -73,7 +73,7 @@ export default function PracticePage() {
                 <div className="practice-card-footer">
                   <span>{item.documents.length} стр. документов</span>
                   <Link href={`/praktika/${item.slug}`}>
-                    Смотреть решение <span aria-hidden="true">↗</span>
+                    Смотреть решение <span aria-hidden="true">↗︎</span>
                   </Link>
                 </div>
               </article>

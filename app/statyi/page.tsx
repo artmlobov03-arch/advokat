@@ -76,7 +76,7 @@ export default function ArticlesPage() {
                 <span>{String(index + 1).padStart(2, "0")} · {item.category}</span>
                 <h3>{item.question}</h3>
                 <p>{item.summary}</p>
-                <strong className="card-link">Читать рекомендацию <b>↗</b></strong>
+                <strong className="card-link">Читать рекомендацию <b>↗︎</b></strong>
               </Link>
             ))}
           </div>

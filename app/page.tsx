@@ -146,7 +146,7 @@ export default function Home() {
             <strong>Задержание, обыск или допрос?</strong>
             <p>Не давайте объяснений без защитника. Свяжитесь с адвокатом прямо сейчас.</p>
           </div>
-          <a href={contact.phoneHref}>{contact.phoneDisplay}<span>Позвонить ↗</span></a>
+          <a href={contact.phoneHref}>{contact.phoneDisplay}<span>Позвонить ↗︎</span></a>
         </div>
       </section>
 
@@ -168,7 +168,7 @@ export default function Home() {
                 <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{service.shortTitle}</h3>
                 <p>{service.description}</p>
-                <span className="card-link">Подробнее <b>↗</b></span>
+                <span className="card-link">Подробнее <b>↗︎</b></span>
               </Link>
             ))}
           </div>
@@ -193,7 +193,7 @@ export default function Home() {
                 <span>{item.article}</span>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
-                <Link href="/praktika">Изучить практику ↗</Link>
+                <Link href="/praktika">Изучить практику ↗︎</Link>
               </article>
             ))}
           </div>
@@ -233,7 +233,7 @@ export default function Home() {
               <li>Прямое взаимодействие без посредников</li>
               <li>Территория работы — Подольск, Москва, Московская область и другие регионы РФ</li>
             </ul>
-            <Link className="text-link" href="/ob-advokate">Подробнее об адвокате ↗</Link>
+            <Link className="text-link" href="/ob-advokate">Подробнее об адвокате ↗︎</Link>
           </div>
         </div>
       </section>
@@ -295,7 +295,7 @@ export default function Home() {
                   sizes="(max-width: 760px) 100vw, 50vw"
                   unoptimized
                 />
-                <span>Увеличить отзыв ↗</span>
+                <span>Увеличить отзыв ↗︎</span>
               </a>
             ))}
           </div>

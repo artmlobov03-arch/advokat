@@ -610,19 +610,22 @@ img {
 }
 
 .service-card::after {
-  content: "↗";
+  content: "";
   position: absolute;
-  top: -26px;
-  right: 5px;
-  color: rgba(23, 25, 28, 0.035);
-  font-family: var(--serif);
-  font-size: 150px;
-  line-height: 1;
-  transition: color 0.35s ease, transform 0.35s ease;
+  top: 18px;
+  right: 18px;
+  width: 118px;
+  height: 118px;
+  background: currentColor;
+  opacity: 0.045;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M17 83 80 20M38 20h42v42' fill='none' stroke='black' stroke-width='5' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M17 83 80 20M38 20h42v42' fill='none' stroke='black' stroke-width='5' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .service-card:hover::after {
-  color: rgba(211, 214, 217, 0.11);
+  opacity: 0.11;
   transform: translate(-6px, 6px);
 }
 
@@ -644,8 +647,7 @@ img {
 }
 
 .service-card:first-child::after {
-  color: rgba(211, 214, 217, 0.12);
-  font-size: 150px;
+  opacity: 0.12;
 }
 
 .service-index {
@@ -1236,10 +1238,20 @@ img {
 }
 
 .inner-list li::before {
-  content: "↗";
+  content: "";
   position: absolute;
   left: 0;
-  color: #70767b;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background: #70767b;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M17 83 80 20M38 20h42v42' fill='none' stroke='black' stroke-width='9' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M17 83 80 20M38 20h42v42' fill='none' stroke='black' stroke-width='9' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.card-link b {
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant-emoji: text;
 }
 
 .sidebar-card {

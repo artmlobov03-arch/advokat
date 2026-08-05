@@ -108,7 +108,7 @@ export default function ContactsPage() {
             <div>
               <p>{contact.address}</p>
               <a className="text-link" href={contact.map} target="_blank" rel="noreferrer">
-                Открыть в Google Картах ↗
+                Открыть в Google Картах ↗︎
               </a>
             </div>
           </div>
