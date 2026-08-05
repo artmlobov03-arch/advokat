@@ -1,12 +1,48 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { contact } from "../data/site";
+import { ApplicationForm } from "../components/ApplicationForm";
+import { ConsentMap } from "../components/ConsentMap";
+import { JsonLd } from "../components/JsonLd";
+import { breadcrumbSchema, legalServiceSchema } from "../data/seo";
+import { absoluteUrl, contact } from "../data/site";
 
 export const metadata: Metadata = {
-  title: "Контакты",
+  title: "Контакты адвоката в Подольске",
   description:
-    "Контакты адвоката Дмитрия Рожновского в Подольске: телефон, Telegram, адрес и график работы.",
+    "Телефон, мессенджеры, адрес и график работы адвоката Дмитрия Рожновского в Подольске. Приём по предварительной договорённости.",
   alternates: { canonical: "/kontakty" },
+  openGraph: {
+    title: "Контакты адвоката Дмитрия Рожновского",
+    description: "Запись на консультацию и срочная правовая помощь в Подольске.",
+    url: "/kontakty",
+  },
+};
+
+const contactsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      name: "Контакты адвоката Дмитрия Рожновского",
+      url: absoluteUrl("/kontakty"),
+      mainEntity: {
+        ...legalServiceSchema,
+        telephone: contact.phoneDisplay,
+        email: contact.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "ул. Комсомольская, д. 61/31, офис 201",
+          addressLocality: "Подольск",
+          addressRegion: "Московская область",
+          addressCountry: "RU",
+        },
+      },
+    },
+    breadcrumbSchema([
+      { name: "Главная", path: "/" },
+      { name: "Контакты", path: "/kontakty" },
+    ]),
+  ],
 };
 
 export default function ContactsPage() {
@@ -37,40 +73,53 @@ export default function ContactsPage() {
               <a href={contact.map} target="_blank" rel="noreferrer">{contact.address}</a>
             </div>
             <div className="contact-detail">
-              <span>График работы</span>
-              <strong>Пн–Пт: 08:00–23:00<br />Сб: 10:00–20:00<br />Вс: выходной</strong>
+              <span>Юридический адрес</span>
+              <strong>{contact.legalAddress}</strong>
             </div>
             <div className="contact-detail">
               <span>Электронная почта</span>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
             </div>
           </div>
-          <form className="contact-form" action={`mailto:${contact.email}`} method="post" encType="text/plain">
-            <h2>Опишите ситуацию</h2>
-            <p>После отправки откроется почтовая программа с подготовленным сообщением.</p>
-            <div className="form-grid">
-              <div className="field">
-                <label htmlFor="name">Имя</label>
-                <input id="name" name="Имя" autoComplete="name" required />
-              </div>
-              <div className="field">
-                <label htmlFor="phone">Телефон</label>
-                <input id="phone" name="Телефон" type="tel" autoComplete="tel" required />
-              </div>
-              <div className="field field-full">
-                <label htmlFor="message">Краткое описание ситуации</label>
-                <textarea id="message" name="Описание ситуации" required />
+          <ApplicationForm recipientEmail={contact.email} />
+        </div>
+      </section>
+
+      <section className="contact-location">
+        <div className="container">
+          <div className="schedule-panel">
+            <span className="schedule-clock" aria-hidden="true" />
+            <div>
+              <p className="eyebrow eyebrow-dark">Время для связи и приёма</p>
+              <h2>График работы</h2>
+              <div className="schedule-lines">
+                <p>{contact.schedule.weekdays}</p>
+                <p>{contact.schedule.saturday}</p>
+                <p>{contact.schedule.sunday}</p>
               </div>
             </div>
-            <label className="consent">
-              <input type="checkbox" required />
-              <span>Я принимаю <Link href="/soglasie">условия обработки персональных данных</Link>.</span>
-            </label>
-            <button className="button" type="submit">Подготовить обращение</button>
-          </form>
+          </div>
+
+          <div className="map-heading">
+            <div>
+              <p className="eyebrow eyebrow-dark">Место приёма</p>
+              <h2>Офис в центре Подольска</h2>
+            </div>
+            <div>
+              <p>{contact.address}</p>
+              <a className="text-link" href={contact.map} target="_blank" rel="noreferrer">
+                Открыть в Google Картах ↗
+              </a>
+            </div>
+          </div>
+
+          <div className="office-map">
+            <ConsentMap />
+          </div>
         </div>
       </section>
       <a className="mobile-call" href={contact.phoneHref}>Позвонить адвокату</a>
+      <JsonLd data={contactsSchema} />
     </main>
   );
 }

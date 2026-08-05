@@ -1,15 +1,58 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cases, contact, faq, services } from "./data/site";
+import { JsonLd } from "./components/JsonLd";
+import {
+  absoluteUrl,
+  cases,
+  contact,
+  faq,
+  services,
+  siteConfig,
+} from "./data/site";
+
+const reviewScreenshots = [
+  {
+    src: "/reviews/review-yandex-pavel.png",
+    alt: "Отзыв Павла о защите по уголовному делу",
+    width: 1294,
+    height: 482,
+  },
+  {
+    src: "/reviews/review-yandex-stepa.png",
+    alt: "Отзыв Степы о работе адвоката Дмитрия Рожновского",
+    width: 1248,
+    height: 716,
+  },
+  {
+    src: "/reviews/review-yandex-denis.png",
+    alt: "Отзыв Дениса о прекращении уголовного дела",
+    width: 1282,
+    height: 458,
+  },
+  {
+    src: "/reviews/review-yandex-larisa.png",
+    alt: "Отзыв Ларисы о защите родственника по уголовному делу",
+    width: 1220,
+    height: 580,
+  },
+];
 
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      inLanguage: "ru-RU",
+    },
+    {
       "@type": "LegalService",
-      name: "Адвокат Дмитрий Рожновский",
-      url: "https://rozhnovskiy.ru/",
-      image: "https://rozhnovskiy.ru/advokat-rozhnovskiy.webp",
+      "@id": `${siteConfig.url}/#legal-service`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      image: absoluteUrl("/advokat-rozhnovskiy.webp"),
       telephone: "+79852454433",
       email: contact.email,
       address: {
@@ -20,11 +63,34 @@ const schema = {
         addressCountry: "RU",
       },
       areaServed: ["Подольск", "Москва", "Московская область"],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "23:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "Saturday",
+          opens: "10:00",
+          closes: "20:00",
+        },
+      ],
+      sameAs: [
+        "https://yandex.ru/profile/143096616667?lang=ru",
+      ],
     },
     {
       "@type": "Person",
-      name: "Дмитрий Владимирович Рожновский",
+      "@id": `${absoluteUrl("/ob-advokate")}#person`,
+      name: siteConfig.legalName,
       jobTitle: "Адвокат",
+      url: absoluteUrl("/ob-advokate"),
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Белгородский юридический институт МВД России",
+      },
       worksFor: { "@type": "Organization", name: "ПКА «СЕД ЛЕКС»" },
     },
   ],
@@ -36,7 +102,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero-media" aria-hidden="true">
           <Image
-            src="/advokat-hero-gray-suit.webp"
+            src="/advokat-hero-gray-portrait.webp"
             alt=""
             fill
             priority
@@ -122,7 +188,7 @@ export default function Home() {
             </p>
           </div>
           <div className="cases-grid">
-            {cases.map((item) => (
+            {cases.slice(0, 3).map((item) => (
               <article className="case-card" key={item.article}>
                 <span>{item.article}</span>
                 <h3>{item.title}</h3>
@@ -153,18 +219,19 @@ export default function Home() {
             <p className="eyebrow eyebrow-dark">Об адвокате</p>
             <h2>Спокойная оценка ситуации. Последовательная защита.</h2>
             <p className="lead">
-              Работа адвоката строится на доверии, конфиденциальности и внимании
-              к деталям каждого дела.
+              Юридический стаж с 2009 года: от следователя и руководителя
+              следственного отдела до независимой адвокатской практики.
             </p>
             <p>
-              Защита включает анализ материалов, участие в следственных действиях,
-              подготовку процессуальных документов и представление интересов
-              доверителя в суде.
+              Опыт расследования ДТП, преступлений в сфере незаконного оборота
+              наркотиков и экономики помогает оценивать дело не только с позиции
+              защиты, но и понимать логику работы следствия.
             </p>
             <ul className="clean-list">
-              <li>Понятное объяснение рисков и возможных действий</li>
+              <li>Высшее юридическое образование — Белгородский юридический институт МВД России</li>
+              <li>Опыт руководства следственным подразделением</li>
               <li>Прямое взаимодействие без посредников</li>
-              <li>Правовая позиция, основанная на материалах дела</li>
+              <li>Территория работы — Подольск, Москва, Московская область и другие регионы РФ</li>
             </ul>
             <Link className="text-link" href="/ob-advokate">Подробнее об адвокате ↗</Link>
           </div>
@@ -197,26 +264,51 @@ export default function Home() {
       </section>
 
       <section className="section reviews-section">
-        <div className="container review-panel">
-          <div>
-            <p className="eyebrow">Отзывы доверителей</p>
-            <blockquote>
-              «Для меня важно, чтобы доверитель понимал происходящее, свои права
-              и логику каждого следующего шага».
-            </blockquote>
-            <p className="quote-author">Дмитрий Рожновский</p>
+        <div className="container reviews-shell">
+          <div className="reviews-heading">
+            <div>
+              <p className="eyebrow">Отзывы доверителей</p>
+              <h2>О работе лучше всего говорят результаты и доверие людей</h2>
+            </div>
+            <div className="review-summary">
+              <span className="review-score">5,0</span>
+              <div className="review-stars" aria-label="Пять звёзд">★★★★★</div>
+              <p>Отзывы опубликованы пользователями в профиле адвоката на Яндексе.</p>
+            </div>
           </div>
-          <div className="review-source">
-            <span className="review-score">5,0</span>
-            <div aria-label="Пять звёзд">★★★★★</div>
-            <p>Актуальные отзывы доступны в профиле адвоката на Яндексе.</p>
+
+          <div className="review-gallery">
+            {reviewScreenshots.map((review) => (
+              <a
+                className="review-card"
+                href={review.src}
+                target="_blank"
+                rel="noreferrer"
+                key={review.src}
+                aria-label={`${review.alt}. Открыть изображение полностью`}
+              >
+                <Image
+                  src={review.src}
+                  alt={review.alt}
+                  width={review.width}
+                  height={review.height}
+                  sizes="(max-width: 760px) 100vw, 50vw"
+                  unoptimized
+                />
+                <span>Увеличить отзыв ↗</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="reviews-footer">
+            <p>Все отзывы можно проверить в открытом профиле.</p>
             <a
               className="button button-light"
               href="https://yandex.ru/profile/143096616667?lang=ru"
               target="_blank"
               rel="noreferrer"
             >
-              Читать отзывы
+              Смотреть все отзывы на Яндексе
             </a>
           </div>
         </div>
@@ -261,10 +353,7 @@ export default function Home() {
       </section>
 
       <a className="mobile-call" href={contact.phoneHref}>Позвонить адвокату</a>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd data={schema} />
     </main>
   );
 }

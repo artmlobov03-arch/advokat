@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { contact, services } from "../../data/site";
+import { JsonLd } from "../../components/JsonLd";
+import { breadcrumbSchema, legalServiceSchema } from "../../data/seo";
+import { absoluteUrl, contact, services } from "../../data/site";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -16,9 +18,14 @@ export async function generateMetadata({
   const service = services.find((item) => item.slug === slug);
   if (!service) return {};
   return {
-    title: service.title,
-    description: service.description,
+    title: service.shortTitle,
+    description: `${service.description} Консультация адвоката в Подольске, Москве и Московской области.`,
     alternates: { canonical: `/uslugi/${service.slug}` },
+    openGraph: {
+      title: `${service.title} — адвокат Дмитрий Рожновский`,
+      description: service.description,
+      url: `/uslugi/${service.slug}`,
+    },
   };
 }
 
@@ -32,6 +39,35 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const related = services.filter((item) => item.slug !== slug).slice(0, 3);
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: service.title,
+        url: absoluteUrl(`/uslugi/${service.slug}`),
+        serviceType: service.shortTitle,
+        description: service.description,
+        areaServed: ["Подольск", "Москва", "Московская область"],
+        provider: {
+          ...legalServiceSchema,
+          telephone: contact.phoneDisplay,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "ул. Комсомольская, д. 61/31, офис 201",
+            addressLocality: "Подольск",
+            addressRegion: "Московская область",
+            addressCountry: "RU",
+          },
+        },
+      },
+      breadcrumbSchema([
+        { name: "Главная", path: "/" },
+        { name: "Услуги", path: "/#services" },
+        { name: service.shortTitle, path: `/uslugi/${service.slug}` },
+      ]),
+    ],
+  };
 
   return (
     <main>
@@ -48,6 +84,15 @@ export default async function ServicePage({
         <div className="container content-grid">
           <article className="content-prose">
             <p>{service.intro}</p>
+            <h2>Что важно на начальном этапе</h2>
+            <p>
+              До выработки позиции необходимо определить процессуальный статус,
+              изучить вручённые документы и понять, какие действия уже
+              проведены. Необдуманные объяснения, переписка с участниками или
+              попытка самостоятельно исправить документы могут осложнить
+              защиту. Оптимальный порядок действий определяется после
+              конфиденциальной консультации.
+            </p>
             <h2>Когда может потребоваться помощь</h2>
             <ul className="inner-list">
               {service.situations.map((item) => <li key={item}>{item}</li>)}
@@ -60,6 +105,10 @@ export default async function ServicePage({
               Конкретный порядок действий определяется после изучения обстоятельств
               и документов. Консультация не является обещанием определённого
               процессуального результата.
+            </p>
+            <p>
+              Ознакомьтесь также с <Link href="/praktika">обезличенной практикой</Link>
+              {" "}и <Link href="/statyi">рекомендациями при задержании и допросе</Link>.
             </p>
           </article>
           <aside className="sidebar-card">
@@ -92,6 +141,7 @@ export default async function ServicePage({
         </div>
       </section>
       <a className="mobile-call" href={contact.phoneHref}>Позвонить адвокату</a>
+      <JsonLd data={serviceSchema} />
     </main>
   );
 }

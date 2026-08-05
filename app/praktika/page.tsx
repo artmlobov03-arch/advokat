@@ -1,12 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { cases, contact } from "../data/site";
+import { JsonLd } from "../components/JsonLd";
+import { breadcrumbSchema } from "../data/seo";
+import { absoluteUrl, contact, practiceCases } from "../data/site";
 
 export const metadata: Metadata = {
-  title: "Практика и результаты дел",
+  title: "Практика по уголовным делам",
   description:
-    "Обезличенные материалы из адвокатской практики Дмитрия Рожновского: прекращение дел, реабилитация и изменение квалификации.",
+    "Практика адвоката Дмитрия Рожновского: прекращение уголовных дел, реабилитация, переквалификация обвинения и примирение сторон.",
   alternates: { canonical: "/praktika" },
+  openGraph: {
+    title: "Практика по уголовным делам — адвокат Дмитрий Рожновский",
+    description:
+      "Обезличенные результаты по делам о мошенничестве, ДТП, наркотиках и преступлениях против собственности.",
+    url: "/praktika",
+  },
+};
+
+const practiceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "Практика адвоката Дмитрия Рожновского",
+      itemListElement: practiceCases.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: `${item.title} — ${item.article}`,
+        url: absoluteUrl(`/praktika/${item.slug}`),
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Главная", path: "/" },
+      { name: "Практика", path: "/praktika" },
+    ]),
+  ],
 };
 
 export default function PracticePage() {
@@ -18,8 +46,8 @@ export default function PracticePage() {
           <p className="eyebrow">Судебные решения</p>
           <h1>Практика, подтверждённая материалами дел</h1>
           <p className="hero-lead">
-            Обезличенные примеры дел, в которых Дмитрий Рожновский представлял
-            интересы доверителей.
+            Прекращение уголовного преследования, реабилитация, примирение
+            сторон и изменение первоначальной квалификации обвинения.
           </p>
         </div>
       </section>
@@ -27,17 +55,36 @@ export default function PracticePage() {
         <div className="container">
           <div className="section-heading">
             <div><p className="eyebrow eyebrow-dark">Избранные дела</p><h2>Результаты и правовая позиция</h2></div>
-            <p>Материалы размещаются с соблюдением конфиденциальности и без раскрытия персональных данных доверителей.</p>
+            <p>
+              Результаты подтверждаются судебными и процессуальными
+              документами. Перечень опубликован без раскрытия персональных
+              данных доверителей.
+            </p>
           </div>
-          <div className="inner-cards">
-            {cases.map((item) => (
-              <article className="inner-card" key={item.article}>
-                <span>{item.article}</span>
+          <div className="practice-cards">
+            {practiceCases.map((item, index) => (
+              <article className="practice-card" key={item.slug}>
+                <div className="practice-card-topline">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>{item.article}</span>
+                </div>
                 <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <p>{item.result}</p>
+                <div className="practice-card-footer">
+                  <span>{item.documents.length} стр. документов</span>
+                  <Link href={`/praktika/${item.slug}`}>
+                    Смотреть решение <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
+          <p className="privacy-note">
+            Все опубликованные документы обезличены: скрыты данные доверителей,
+            судей, прокуроров, следователей и иных участников производства.
+            Сохранены только сведения об адвокате Рожновском Дмитрии
+            Владимировиче.
+          </p>
         </div>
       </section>
       <section className="contact-cta">
@@ -54,6 +101,7 @@ export default function PracticePage() {
         </div>
       </section>
       <a className="mobile-call" href={contact.phoneHref}>Позвонить адвокату</a>
+      <JsonLd data={practiceSchema} />
     </main>
   );
 }

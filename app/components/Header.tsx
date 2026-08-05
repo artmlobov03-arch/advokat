@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { contact } from "../data/site";
 
@@ -22,7 +23,14 @@ export function Header() {
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="На главную">
             <span className="brand-mark brand-logo" aria-hidden="true">
-              <img src="/sedlex-logo.webp" alt="" />
+              <Image
+                src="/sedlex-logo.webp"
+                alt=""
+                width={54}
+                height={54}
+                sizes="54px"
+                unoptimized
+              />
             </span>
             <span>
               <strong>Дмитрий Рожновский</strong>

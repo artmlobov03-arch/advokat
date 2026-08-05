@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { contact, services } from "../data/site";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 
 export function Footer() {
   return (
@@ -8,7 +10,14 @@ export function Footer() {
         <div>
           <Link className="brand brand-light" href="/">
             <span className="brand-mark brand-logo" aria-hidden="true">
-              <img src="/sedlex-logo.webp" alt="" />
+              <Image
+                src="/sedlex-logo.webp"
+                alt=""
+                width={54}
+                height={54}
+                sizes="54px"
+                unoptimized
+              />
             </span>
             <span>
               <strong>Дмитрий Рожновский</strong>
@@ -44,8 +53,16 @@ export function Footer() {
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Адвокат Рожновский Д.В.</span>
         <div>
-          <Link href="/politika">Политика конфиденциальности</Link>
-          <Link href="/soglasie">Согласие на обработку данных</Link>
+          <Link href="/politika" target="_blank" rel="noreferrer">
+            Политика конфиденциальности
+          </Link>
+          <Link href="/soglasie-cookie" target="_blank" rel="noreferrer">
+            Согласие на использование файлов cookie
+          </Link>
+          <Link href="/soglasie" target="_blank" rel="noreferrer">
+            Согласие на обработку персональных данных
+          </Link>
+          <CookieSettingsButton />
         </div>
       </div>
     </footer>
