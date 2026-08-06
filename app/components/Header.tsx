@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { contact } from "../data/site";
 
 const links = [
@@ -14,10 +15,15 @@ const links = [
 ];
 
 export function Header() {
-  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+  const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   const closeMobileMenu = () => {
-    mobileMenuRef.current?.removeAttribute("open");
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -56,7 +62,11 @@ export function Header() {
           <a className="button button-sm" href={contact.telegram} target="_blank" rel="noreferrer">
             Написать
           </a>
-          <details className="mobile-menu" ref={mobileMenuRef}>
+          <details
+            className="mobile-menu"
+            open={isMobileMenuOpen}
+            onToggle={(event) => setIsMobileMenuOpen(event.currentTarget.open)}
+          >
             <summary aria-label="Открыть меню"><span /><span /></summary>
             <nav aria-label="Мобильная навигация">
               {links.map((link) => (
