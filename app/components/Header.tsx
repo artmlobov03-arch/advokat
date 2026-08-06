@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import { contact } from "../data/site";
 
 const links = [
@@ -11,6 +14,12 @@ const links = [
 ];
 
 export function Header() {
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  const closeMobileMenu = () => {
+    mobileMenuRef.current?.removeAttribute("open");
+  };
+
   return (
     <>
       <div className="notice-bar">
@@ -21,7 +30,7 @@ export function Header() {
       </div>
       <header className="site-header">
         <div className="container header-inner">
-          <Link className="brand" href="/" aria-label="На главную">
+          <Link className="brand" href="/" aria-label="На главную" onClick={closeMobileMenu}>
             <span className="brand-mark brand-logo" aria-hidden="true">
               <Image
                 src="/sedlex-logo.webp"
@@ -47,15 +56,15 @@ export function Header() {
           <a className="button button-sm" href={contact.telegram} target="_blank" rel="noreferrer">
             Написать
           </a>
-          <details className="mobile-menu">
+          <details className="mobile-menu" ref={mobileMenuRef}>
             <summary aria-label="Открыть меню"><span /><span /></summary>
             <nav aria-label="Мобильная навигация">
               {links.map((link) => (
-                <Link key={link.href} href={link.href}>
+                <Link key={link.href} href={link.href} onClick={closeMobileMenu}>
                   {link.label}
                 </Link>
               ))}
-              <a href={contact.phoneHref}>{contact.phoneDisplay}</a>
+              <a href={contact.phoneHref} onClick={closeMobileMenu}>{contact.phoneDisplay}</a>
             </nav>
           </details>
         </div>
